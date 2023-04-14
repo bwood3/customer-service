@@ -1,4 +1,3 @@
-import data from '..data/data'
 import {useEffect} from "react";
 const Customers = () => {
 
