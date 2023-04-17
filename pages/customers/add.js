@@ -1,6 +1,7 @@
-import styles from "/styles/customers.add.module.css";
+
+import styles from "../../styles/customers.add.module.css";
 import { useForm } from 'react-hook-form';
-import data from '/data/data'
+import data from '../../data/data'
 
 const Customer = () => {
     const { register, handleSubmit, errors, reset } = useForm();
@@ -12,7 +13,9 @@ const Customer = () => {
         console.log(response);
         if(response != null){
             reset();
+
         }
+
     }
 
     return(
@@ -28,7 +31,7 @@ const Customer = () => {
                                    name="name"
                                    {...register('name',
                                        {required: true,
-                                           message: 'please enter a name' })}
+                                               message: 'please enter a name' })}
                                    placeholder="Enter Full Name"/>
 
                         </div>

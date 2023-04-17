@@ -1,6 +1,6 @@
 import styles from "/styles/customers.module.css";
 import data from '/data/data'
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Spinner from "/components/Spinner";
 
 const Customers = () => {
@@ -13,29 +13,35 @@ const Customers = () => {
             .then((data) => {
                 setCustomers(data);
                 setLoading(false);
-                console.log(data);
+                console.log("API response:", data);
             })
-            .catch((e) => console.log(e));
+            .catch((error) => {
+                console.log("API error:", error);
+                setLoading(false);
+            });
     }, []);
 
+    console.log("Customers state:", customers);
+    console.log("Loading state:", loading);
+
     if (loading) {
-        return <Spinner />;
-    } else
+        return <Spinner/>;
+    } else {
         return (
             <>
                 <div className={styles.tableContainer}>
                     <table className={styles.table}>
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>name</th>
+                            <th>email</th>
                         </tr>
                         </thead>
                         <tbody>
                         {customers.map((c, i) => (
                             <tr key={i}>
-                                <td data-label="Name">{c.name}</td>
-                                <td data-label="Email">{c.email}</td>
+                                <td data-label="name">{c.name}</td>
+                                <td data-label="email">{c.email}</td>
                             </tr>
                         ))}
                         </tbody>
@@ -43,6 +49,7 @@ const Customers = () => {
                 </div>
             </>
         );
+    }
 };
 
 export default Customers;
